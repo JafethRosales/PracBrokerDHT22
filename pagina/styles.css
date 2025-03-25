@@ -1,0 +1,39 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+.button-container {
+    display: flex;
+    gap: 20px;
+}
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #ddd;
+    transition: background 0.3s;
+}
+button:hover {
+    background-color: #0056b3;
+}
+.active {
+    background-color: #4CAF50;
+    color: white;
+}
+.deactive {
+    background-color: #f02105;
+    color: white;
+}
+#messages {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 300px;
+    margin: auto;
+    background: #f9f9f9;
+    text-align: left;
+}
