@@ -1,0 +1,1 @@
+lista = [("V_Posgrado_Planta_Baja", "itcolima6"), ("itel S24", "Jafeth12345")]
