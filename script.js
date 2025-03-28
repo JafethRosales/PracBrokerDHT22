@@ -1,7 +1,7 @@
 // Configuración del broker MQTT con WebSockets
-const broker = "mqtt://broker.emqx.io:1883"; // EMQX gratuito
+const broker = "ws://broker.emqx.io:8083/mqtt"; // EMQX gratuito
 const topicLed = "data/led"; // Tópico para enviar mensajes
-const topicSub = "data/temp"; // Tópico para recibir mensajes
+const topicSub = "data/temp/#"; // Tópico para recibir mensajes
 const clientId = "web_client_" + Math.random().toString(16).substr(2, 8);
 
 // Conectar al broker MQTT
@@ -39,7 +39,7 @@ function publishMessage(state) {
 
 // Escuchar mensajes del tópico de suscripción
 client.on("message", (receivedTopic, message) => {
-    if (receivedTopic === topicSub) {
+    if (receivedTopic) {
         const msgText = message.toString();
         console.log(`Mensaje recibido en '${topicSub}': ${msgText}`);
 
