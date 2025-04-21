@@ -1,0 +1,1 @@
+lista = [("V_Posgrado_Planta_Baja", "itcolima6"), ("itel S24", "Jafeth12345"), ("FB37BA", "12T7692B02946"), ("FB37BB", "12T7692B02946"), ("V_Sala_Videoconferencia", "itcolima6")]

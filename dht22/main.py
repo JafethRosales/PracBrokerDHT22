@@ -75,7 +75,7 @@ except Exception as e:
 
 # Configuración MQTT
 MQTT_BROKER = "broker.emqx.io"
-MQTT_TOPIC = "data/temp"
+MQTT_TOPIC = "data/temp/jafeth"
 MQTT_CLIENT_ID = ubinascii.hexlify(machine.unique_id()).decode()
 MQTT_PORT = 1883
 
@@ -154,21 +154,24 @@ def registrar_datos(temp, hum, fecha, hora):
         print("Error al guardar datos!!", e)
 
 # Conectar WiFi
-def conectar_wifi():
-    for key, value in WiFiList.lista:
+def conectar_wifi(lista):
+    wlan = network.WLAN(network.STA_IF)
+    wlan.active(True)
+    
+    for key, value in lista:
         SSID = key
         PASSWORD = value
         trys = 0
-        wlan = network.WLAN(network.STA_IF)
-        wlan.active(True)
+        wlan.disconnect()
+        utime.sleep(1)  
         wlan.connect(SSID, PASSWORD)
-        while not wlan.isconnected() and trys <4:
+        while not wlan.isconnected() and trys <5:
             print("Conectando a WiFi...")
             trys += 1
             utime.sleep(1)    
         if wlan.isconnected():
             print("Conexión exitosa: ", wlan.ifconfig())
-            break
+            return True
     if not wlan.isconnected():
         print("No se pudo conectar a Wi-Fi")
     
@@ -200,7 +203,7 @@ def mqtt_callback(topic, msg):
 
 
 # Conectar a WiFi antes de iniciar MQTT
-conectar_wifi()
+conectar_wifi(WiFiList.lista)
 
 # Inicializar cliente MQTT
 mqtt_client = MQTTClient(MQTT_CLIENT_ID, MQTT_BROKER, port=MQTT_PORT)

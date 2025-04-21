@@ -1,5 +1,5 @@
 // Configuración del broker MQTT con WebSockets
-const broker = "ws://broker.emqx.io:8083/mqtt"; // EMQX gratuito
+const broker = "wss://broker.emqx.io:8084/mqtt"; // EMQX gratuito
 const topicLed = "data/led"; // Tópico para enviar mensajes
 const topicSub = "data/temp/#"; // Tópico para recibir mensajes
 const clientId = "web_client_" + Math.random().toString(16).substr(2, 8);

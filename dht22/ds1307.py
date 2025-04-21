@@ -12,7 +12,7 @@ class DS1307:
 
     def obtener_fecha(self):
         data = self.i2c.readfrom_mem(self.addr, 0x04, 3)
-        return "{:02}/{:02}/20{:02}".format(self.bcd_to_dec(data[2]), self.bcd_to_dec(data[1]), self.bcd_to_dec(data[0]))
+        return "20{:02}/{:02}/{:02}".format(self.bcd_to_dec(data[2]), self.bcd_to_dec(data[1]), self.bcd_to_dec(data[0]))
 
     def establecer_hora(self, hora, minuto, segundo):
         data = bytearray([self.dec_to_bcd(segundo), self.dec_to_bcd(minuto), self.dec_to_bcd(hora)])
