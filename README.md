@@ -17,4 +17,4 @@
 
 - Suscribirse al tópico donde se envían las lecturas del sensor.
 - Parsear las lecturas a formato JSON para poder presentar los datos de una forma más entendible para la lectura humana.
-- Conectarse al **broker** como publicista para enviar las señales de encendido y apagado del led integrado al esp32 habilitar su uso de forma remota.
+- Conectarse al **broker** como publicista para enviar señales de encendido y apagado al led integrado del esp32, habilitando su uso de forma remota.
