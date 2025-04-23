@@ -6,17 +6,43 @@
     <title>MQTT-esp32</title>
     <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/pochi16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/pochi32.png">
 </head>
 <body>
-    <div class="button-container">
-        <button id="onButton" onclick="publishMessage('on')">ON</button>
-        <button id="offButton" onclick="publishMessage('off')">OFF</button>
+    <div class="broker">
+        <div class="titulo">
+            <h1>Sensor de temperatura y humedad remoto con esp32 y broker EMQX</h1>
+            <hr class="linea">
+        </div>
+        <div class="statusBroker">
+            <h2 class="sectionTitle">Status de Conexión</h2>
+            <div class="status-container">
+                <h4 id="status">- Desconectado</h4>
+                <svg height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <circle id=statusCircle r="9" cx="10" cy="10" fill="#f02105" stroke=#211121 stroke-width="2" />
+                </svg>
+            </div>
+                
+        </div>        
+        
+        <div class="button-container">
+            <h2 class="sectionTitle">Encendido remoto de LED</h2>
+            <div class="botones"> 
+                <button id="onButton" onclick="publishMessage('on')">Encender</button>
+                <button id="offButton" onclick="publishMessage('off')">Apagar</button>
+            </div>
+        </div>
     </div>
-
-    <h2>Mensajes Recibidos</h2>
-    <div id="messages"></div> <!-- Mensajes entrantes -->
-    <p id="status">Desconectado</p>
-
+        
+    <div class="mensajes">
+        <h2 class="title-lecturas">Lecturas Recibidas Recientemente</h2>    
+        <div id="messages">
+            <p id="vacio" class="sinLecturas lecturas-container">Sin lecturas del sensor.</p>
+            <!-- Mensajes entrantes -->    
+        </div>
+    </div>
+    
     <script src="script.js"></script>
 </body>
 </html>

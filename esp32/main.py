@@ -92,7 +92,7 @@ def set_color(r, g, b):
 #Función para cambiar el color según %humedad    
 def hum_color(hum):
     if hum < 40:
-        set_color(900, 500, 200) 
+        set_color(890, 200, 20) 
     elif (hum >=40 and hum <=70):
         set_color(200, 1023, 100)
     else:
@@ -138,7 +138,7 @@ def registrar_datos(temp, hum, fecha, hora):
     try:
         # Guardar en la microSD
         with open("/sd/datalog.csv", "a") as f:
-            f.write(f"{fecha}, {hora}, {temp:.1f}, {hum:.1f}\n")
+            f.write(f"{temp:.1f}, {hum:.1f}, {fecha}{hora}\n")
         # Leer y mostrar contenido en la consola
         print("\n--- Contenido de datalog.csv ---")
         with open("/sd/datalog.csv", "r") as f:
@@ -181,7 +181,7 @@ def publicar_mqtt(temp, hum, date, hour):
         print("No hay datos válidos para enviar.")
         return
     try:
-        mensaje = f'{{"temperatura": {temp:.1f}, "humedad": {hum:.1f}, "fecha": {date}, "hora": {hour}}}'
+        mensaje = f'{{"temperatura": {temp:.1f}, "humedad": {hum:.1f}, "timestamp": "{date}{hour}"}}'
         mqtt_client.publish(MQTT_TOPIC, mensaje)
         print(f"Datos enviados MQTT: {mensaje}")
     except Exception as e:

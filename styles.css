@@ -1,39 +1,157 @@
 body {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: left;
     height: 100vh;
-    background-color: #f4f4f4;
+    background-color: #e6a55c;
+    margin: 0;
+    color: white;
+    padding: 0.5em;
 }
-.button-container {
+
+
+h1{
+    color: #ddd;
+    text-align: justify;
+    font-size: 1.4em;
+    padding: 0.75em;
+    margin: 0;
+    font-family: Arial, Helvetica;
+    background-color: #4d2a0ab6;
+    border-radius: 15px;
+    border-left: 4px solid #ffffff;
+    border-bottom: 4px solid #ffffff;
+    box-shadow: 0 0 15px 0 #0007;
+}
+.titulo{
+    margin-bottom: 4em;
+}
+
+
+.title-lecturas{
+    width: 100%;
+    margin: 0;
+    text-align: center;
+}
+.sectionTitle{
+    width: 100%;
+    margin: 0;
+    margin-top: 0.5em;
+    text-align: center;
+}
+
+.broker{
+    width: 30%;
+    height: 100%;
+    background-color: transparent;
+    padding: 0 1em 1em 1em;
+    margin: 0;
+}
+
+.status-container{
     display: flex;
-    gap: 20px;
+    align-items: center;
+    margin: 0;
+}
+h4{
+    font-weight: 100;
+    margin: 0.75em 0.4em;
+    font-size: 1.15em;
+    text-align: left;
+}
+.statusBroker, .button-container{
+    padding: 0.5em;
+    margin-bottom: 1.5em;
+    background-color: #7c3e04b6;
+    border-radius: 15px;
+    font-family: Arial, Helvetica;
+    font-size: 0.8em;
+    box-shadow: 0 0 15px 0 #0007;
+    border-left: 6px solid #80571b;
+}
+
+
+.botones{
+    margin-top: 0.5em;
+    padding: 1em;
 }
 button {
+    margin-bottom: 0.5em;
+    width: 100%;
     padding: 15px 30px;
     font-size: 18px;
     border: none;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 45px;
     background-color: #ddd;
     transition: background 0.3s;
 }
 button:hover {
-    background-color: #0056b3;
+    background-color: #afb5bd;
 }
 .active {
-    background-color: #4CAF50;
+    background-color: #61a063;
     color: white;
 }
 .deactive {
     background-color: #f02105;
     color: white;
 }
+
+.mensajes{
+    padding: 1em;
+    background-color: #7c3e04b6;
+    width: 70%;
+    margin: 0 1em;
+    overflow-y: auto;
+    border-radius: 15px;
+    box-shadow: 0 0 15px 0 #0007;
+}
+
 #messages {
-    border: 1px solid #ccc;
-    padding: 10px;
-    width: 300px;
-    margin: auto;
-    background: #f9f9f9;
+    margin: 0;
+    padding: 1em;
+    width: 100%;
     text-align: left;
+    box-sizing: border-box;
+}
+.hidden{
+    display: none;
+}
+
+
+
+h3{
+    margin: 0 0 0.7em 0;
+    font-size: 1em;
+    color: black;
+}
+.sinLecturas{
+    color: #666;
+}
+.lecturas-container{
+    background: #ededed;
+    padding: 0.85em;
+    font-family: Arial, Helvetica;
+    border-left: 4px solid #999;
+    margin-bottom: 6px;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+.lecturas{
+    color: #666;
+    font-size: 0.75em;
+    margin: 0 0 0.3em 0;
+    font-weight: 900;
+}
+.dateTime{
+    color: #333;
+    font-size: 0.7em;
+    text-align: right;
+    margin: 0.25em 0;
+}
+.linea{
+    border: none;
+    height: 1px;
+    background-color: #ccc;
 }
