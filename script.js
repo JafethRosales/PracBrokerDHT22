@@ -4,6 +4,23 @@ const topicLed = "data/led"; // Tópico para enviar mensajes
 const topicSub = "data/temp/#"; // Tópico para recibir mensajes
 const clientId = "web_client_" + Math.random().toString(16).substr(2, 8);
 let totalLecturas = 0;
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = 'https://erazcqsubbucfrvlyyad.supabase.co'
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVyYXpjcXN1YmJ1Y2Zydmx5eWFkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc0MjM4MzcsImV4cCI6MjA2Mjk5OTgzN30.MCOkVXNL6p8AE7saKdE-HYPZZXNqtdg2Ut0n3qe-jWE'
+const supabase = createClient(supabaseUrl, supabaseKey)
+
+//función para insertar datos
+async function supabaseInsert(jsonDHT) {
+  const { data, error } = await supabase.from('mediciones').insert(jsonDHT);
+  if (error) {
+    console.error('Error insertando:', error)
+  } else {
+    console.log('Tarea agregada:', data)
+  }
+}
+
+
 
 // Conectar al broker MQTT
 const client = mqtt.connect(broker, { clientId });
@@ -44,6 +61,9 @@ client.on("message", (receivedTopic, message) => {
         const msgText = message.toString();
         const data = JSON.parse(msgText);
         console.log(`Mensaje recibido en '${topicSub}': ${msgText}`);
+
+        //Enviar datos a Supabase
+        supabaseInsert(data);
 
         // Crear el recipiente del mensaje
         const msgDiv = document.getElementById("messages");
