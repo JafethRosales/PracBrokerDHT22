@@ -9,19 +9,29 @@ let totalLecturas = 0;
 const supabaseUrl = 'https://erazcqsubbucfrvlyyad.supabase.co'
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVyYXpjcXN1YmJ1Y2Zydmx5eWFkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc0MjM4MzcsImV4cCI6MjA2Mjk5OTgzN30.MCOkVXNL6p8AE7saKdE-HYPZZXNqtdg2Ut0n3qe-jWE'
 const supabase = createClient(supabaseUrl, supabaseKey)
+const form = document.getElementById('myForm');
 
 
 //función para insertar datos
 async function supabaseInsert(jsonDHT) {
-  const { data, error } = await supabase.from('mediciones').insert([jsonDHT]);
+  const { error } = await supabase.from('mediciones').insert([jsonDHT]);
   if (error) {
-    console.error('Error insertando:', error)
+    console.error('Ocurrió un error --> ', error)
   } else {
-    console.log('Tarea agregada:', data)
+    console.log('Contenido agregado!')
   }
 }
 
-
+//función para eliminar datos
+async function supabaseDelete(id) {
+  const response  = await supabase.from('mediciones').delete().eq('id', id);
+  console.log('Respuesta: ', response)
+}
+form.addEventListener('submit', function (e) {
+  e.preventDefault(); // Prevents the page from reloading
+  const id = Number(this.idRegistro.value);
+  supabaseDelete(id);
+});
 
 // Conectar al broker MQTT
 const client = mqtt.connect(broker, { clientId });
@@ -54,6 +64,8 @@ function publishMessage(state) {
     client.publish(topicLed, state);
     console.log(`Mensaje enviado al tópico '${topicLed}': ${state}`);   
 }
+// Expose it to the global scope
+window.publishMessage = publishMessage;
 
 // Escuchar mensajes del tópico de suscripción
 client.on("message", (receivedTopic, message) => {

@@ -1,7 +1,7 @@
 body {
     display: flex;
     justify-content: left;
-    height: 100vh;
+    height: auto;
     background-color: #e6a55c;
     margin: 0;
     color: white;
@@ -10,7 +10,7 @@ body {
 
 
 h1{
-    color: #ddd;
+    color: #ffffff;
     text-align: justify;
     font-size: 1.4em;
     padding: 0.75em;
@@ -23,7 +23,7 @@ h1{
     box-shadow: 0 0 15px 0 #0007;
 }
 .titulo{
-    margin-bottom: 4em;
+    margin-bottom: 1em;
 }
 
 
@@ -74,7 +74,7 @@ h4{
     margin-top: 0.5em;
     padding: 1em;
 }
-button {
+button, input {
     margin-bottom: 0.5em;
     width: 100%;
     padding: 15px 30px;
@@ -84,9 +84,18 @@ button {
     border-radius: 45px;
     background-color: #ddd;
     transition: background 0.3s;
+    box-sizing: border-box;
+    text-align: center;
+
 }
 button:hover {
     background-color: #afb5bd;
+}
+input:hover {
+    background-color: #afb5bd;
+}
+.delete:hover {
+    background-color: #f02105;
 }
 .active {
     background-color: #61a063;
@@ -101,6 +110,7 @@ button:hover {
     padding: 1em;
     background-color: #7c3e04b6;
     width: 70%;
+    height: auto;
     margin: 0 1em;
     overflow-y: auto;
     border-radius: 15px;
