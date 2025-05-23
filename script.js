@@ -58,9 +58,8 @@ function publishMessage(state) {
 // Escuchar mensajes del tópico de suscripción
 client.on("message", (receivedTopic, message) => {
     if (receivedTopic) {
-        const msgText = message.toString();
-        const data = JSON.parse(msgText);
-        console.log(`Mensaje recibido en '${topicSub}': ${msgText}`);
+        const data = JSON.parse(message);
+        console.log(`Mensaje recibido en '${topicSub}': ${message}`);
 
         //Enviar datos a Supabase
         supabaseInsert(data);
@@ -76,7 +75,7 @@ client.on("message", (receivedTopic, message) => {
         // Formato del mensajes
         for (let key in data){
             const newMsg = document.createElement("p");
-            if (key == "temperatura" || key == "humedad"){
+            if (key == "temperatura" || key == "humedad" || key== "id_dispositivo"){
                 newMsg.innerText =`${key.toUpperCase()}: ${data[key]}`;
                 newMsg.classList.add('lecturas');
             } else {
