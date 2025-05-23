@@ -96,6 +96,7 @@ input:hover {
 }
 .delete:hover {
     background-color: #f02105;
+    color: white;
 }
 .active {
     background-color: #61a063;
