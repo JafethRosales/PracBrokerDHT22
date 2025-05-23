@@ -16,9 +16,13 @@ from machine import PWM, Pin
 #import ds1307, machine
 #i2c = machine.I2C(0, scl=machine.Pin(22), sda=machine.Pin(21))
 #rtc = ds1307.DS1307(i2c)
+#rtc.establecer_fecha(,,)
+#rtc.establecer_hora(,,)
 
 
 
+#obtener MAC
+mac = "AdDDDADS"
 
 
 #Configurar led
@@ -176,12 +180,12 @@ def conectar_wifi(lista):
         print("No se pudo conectar a Wi-Fi")
     
 # Función para publicar datos en MQTT
-def publicar_mqtt(temp, hum, date, hour):
+def publicar_mqtt(temp, hum, date, hour, mac):
     if temp is None or hum is None:
         print("No hay datos válidos para enviar.")
         return
     try:
-        mensaje = f'{{"temperatura": {temp:.1f}, "humedad": {hum:.1f}, "timestamp": "{date}{hour}"}}'
+        mensaje = f'{{"id_dispositivo": "{mac}", "temperatura": {temp:.1f}, "humedad": {hum:.1f}, "timestamp": "{date}{hour}"}}'
         mqtt_client.publish(MQTT_TOPIC, mensaje)
         print(f"Datos enviados MQTT: {mensaje}")
     except Exception as e:
@@ -224,11 +228,11 @@ while True:
         hora = rtc.obtener_hora()
         hum_color(humedad)
         mostrar_emoji(temperatura, humedad)
-        registrar_datos(temperatura,humedad, fecha, hora)
+        #registrar_datos(temperatura,humedad, fecha, hora)
         utime.sleep(3)  # Espera 3 segundos antes de actualizar
         if temperatura is not None and humedad is not None:
             print(f" Temp: {temperatura:.1f}°C | Hum: {humedad:.1f}%")
-            publicar_mqtt(temperatura, humedad, fecha, hora)
+            publicar_mqtt(temperatura, humedad, fecha, hora, mac)
     except OSError as e:
         oled.fill(0)
         oled.text("Error Sensor!", 20, 20)

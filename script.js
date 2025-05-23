@@ -12,7 +12,7 @@ const supabase = createClient(supabaseUrl, supabaseKey)
 
 //función para insertar datos
 async function supabaseInsert(jsonDHT) {
-  const { data, error } = await supabase.from('mediciones').insert(jsonDHT);
+  const { data, error } = await supabase.from('mediciones').insert([jsonDHT]);
   if (error) {
     console.error('Error insertando:', error)
   } else {
@@ -24,7 +24,6 @@ async function supabaseInsert(jsonDHT) {
 
 // Conectar al broker MQTT
 const client = mqtt.connect(broker, { clientId });
-
 client.on("connect", () => {
     document.getElementById("status").innerText = "- Conectado con MQTT";
     console.log("Conectado al broker MQTT");
