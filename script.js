@@ -9,7 +9,7 @@ let totalLecturas = 0;
 const supabaseUrl = 'https://erazcqsubbucfrvlyyad.supabase.co'
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVyYXpjcXN1YmJ1Y2Zydmx5eWFkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc0MjM4MzcsImV4cCI6MjA2Mjk5OTgzN30.MCOkVXNL6p8AE7saKdE-HYPZZXNqtdg2Ut0n3qe-jWE'
 const supabase = createClient(supabaseUrl, supabaseKey)
-const form = document.getElementById('myForm');
+const form = document.getElementById('delete');
 
 
 //función para insertar datos
